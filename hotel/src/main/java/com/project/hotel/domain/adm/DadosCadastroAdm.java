@@ -18,7 +18,8 @@ public record DadosCadastroAdm(
 		@Future
 		LocalDateTime dataCadastro,
 		@NotBlank
-		String permissao
+		String permissao,
+		boolean ativo
 		
 		){
 

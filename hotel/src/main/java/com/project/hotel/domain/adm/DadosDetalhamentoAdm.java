@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import com.project.hotel.entity.Adm;
 
-public record DadosDetalhamentoAdm(String id, String nomeCompleto, String email, String senha, String telefone, LocalDateTime dataCadastro, String permissao) {
+public record DadosDetalhamentoAdm(String id, String nomeCompleto, String email, String senha, String telefone, LocalDateTime dataCadastro, String permissao, boolean ativo) {
 
 	public DadosDetalhamentoAdm(Adm admin) {
-		this(admin.getId(), admin.getNomeCompleto(), admin.getEmail(), admin.getSenha(), admin.getTelefone(), admin.getDataCadastro(), admin.getPermissao());
+		this(admin.getId(), admin.getNomeCompleto(), admin.getEmail(), admin.getSenha(), admin.getTelefone(), admin.getDataCadastro(), admin.getPermissao(), admin.isAtivo());
 	}
 	
 }

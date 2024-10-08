@@ -23,5 +23,5 @@ public class User {
     private String documentoIdentidade;
     private LocalDateTime dataNascimento;
     private String endereco;
-    
+    private boolean ativo;
 }

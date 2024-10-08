@@ -11,7 +11,8 @@ public record DadosAtualizacaoUser(
 		String telefone, 
 		String documentoIdentidade,
 		LocalDateTime dataNascimento, 
-		String endereco
+		String endereco,
+		boolean ativo
 		) {
 
 }

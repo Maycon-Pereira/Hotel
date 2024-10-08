@@ -22,5 +22,5 @@ public class Adm {
     private String telefone;
     private LocalDateTime dataCadastro;
     private String permissao;
-    
+    private boolean ativo;
 }

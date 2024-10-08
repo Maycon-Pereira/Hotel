@@ -9,7 +9,8 @@ public record DadosAtualizacaoAdm(
 		String senha,
 		String telefone,
 		LocalDateTime dataCadastro,
-		String permissao
+		String permissao,
+		boolean ativo
 		) {
 
 	

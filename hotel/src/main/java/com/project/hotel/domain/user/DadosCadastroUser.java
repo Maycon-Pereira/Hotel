@@ -19,7 +19,8 @@ public record DadosCadastroUser(
 	    @NotBlank
 	    LocalDateTime dataNascimento,
 	    @NotBlank
-	    String endereco
+	    String endereco,
+	    boolean ativo
 	    
 		) {
 
