@@ -10,7 +10,8 @@ public record DadosAtualizacaoUser(
 		String senha, 
 		String telefone, 
 		String documentoIdentidade,
-		LocalDateTime dataNascimento, 
+		String dataNascimento, 
+		LocalDateTime dataCadastro,
 		String endereco,
 		boolean ativo
 		) {

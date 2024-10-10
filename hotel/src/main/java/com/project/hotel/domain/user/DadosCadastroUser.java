@@ -2,6 +2,7 @@ package com.project.hotel.domain.user;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 
 public record DadosCadastroUser(
@@ -17,7 +18,9 @@ public record DadosCadastroUser(
 	    @NotBlank
 	    String documentoIdentidade,
 	    @NotBlank
-	    LocalDateTime dataNascimento,
+	    String dataNascimento,
+	    @Future
+	    LocalDateTime dataCadastro,
 	    @NotBlank
 	    String endereco,
 	    boolean ativo

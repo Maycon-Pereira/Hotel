@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("admin")
 public class AdmController {
-	
+
 	@Autowired
 	private AdmService admService;
 
@@ -40,7 +40,7 @@ public class AdmController {
 
 		return ResponseEntity.created(uri).body(dadosDetalhamentoAdm);
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<DadosDetalhamentoAdm> detalhar(@PathVariable String id) throws Exception {
 
@@ -48,11 +48,11 @@ public class AdmController {
 
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<DadosDetalhamentoAdm> atualizar(@PathVariable String id, @RequestBody @Valid DadosAtualizacaoAdm dados)
-			throws Exception {
+	public ResponseEntity<DadosDetalhamentoAdm> atualizar(@PathVariable String id,
+			@RequestBody @Valid DadosAtualizacaoAdm dados) throws Exception {
 
 		DadosDetalhamentoAdm response = admService.atualizarAdmin(id, dados);
 		if (response == null) {
@@ -60,7 +60,7 @@ public class AdmController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoAdm> excluir(@PathVariable String id) throws Exception {
@@ -69,5 +69,6 @@ public class AdmController {
 
 		return ResponseEntity.noContent().build();
 	}
-	
+
+
 }

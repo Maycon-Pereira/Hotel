@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.project.hotel.domain.reserva.DadosDetalhamentoReserva;
+import com.project.hotel.domain.reserva.DadosQuartoReservado;
 import com.project.hotel.domain.user.DadosAtualizacaoUser;
 import com.project.hotel.domain.user.DadosCadastroUser;
 import com.project.hotel.domain.user.DadosDetalhamentoUser;
@@ -68,6 +70,17 @@ public class UserController {
 		userService.excluirUser(id);
 
 		return ResponseEntity.noContent().build();
+	}
+	
+	
+	// Reservar
+
+	@PostMapping("/reserva")
+	@Transactional
+	public ResponseEntity<DadosDetalhamentoReserva> reservarQuarto(@RequestBody @Valid DadosQuartoReservado reserva) throws Exception {
+		
+		DadosDetalhamentoReserva response = userService.reservarQuarto(reserva);
+		return ResponseEntity.ok(response);
 	}
 	
 }

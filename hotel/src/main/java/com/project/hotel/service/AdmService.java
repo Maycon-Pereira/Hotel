@@ -1,6 +1,8 @@
 package com.project.hotel.service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.security.auth.login.AccountNotFoundException;
 
@@ -23,14 +25,19 @@ public class AdmService {
 
 	public DadosDetalhamentoAdm criarAdmin(@Valid DadosCadastroAdm dados) throws Exception {
 		
+		var createdTime = LocalDateTime.now();
+		
 		Adm admin = new Adm();
+		
+		admin.setId(UUID.randomUUID().toString());
 		
 		admin.setNomeCompleto(dados.nomeCompleto());
 		admin.setEmail(dados.email());
 		admin.setSenha(dados.senha());
 		admin.setTelefone(dados.telefone());
-		admin.setDataCadastro(dados.dataCadastro());
+		admin.setDataCadastro(createdTime);
 		admin.setPermissao(dados.permissao());
+		admin.setAtivo(true);
 		
 		Adm saved = admRepository.save(admin);
 		
@@ -81,5 +88,4 @@ public class AdmService {
 		return new DadosDetalhamentoAdm(saved);
 		
 	}
-
 }

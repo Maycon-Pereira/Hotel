@@ -8,8 +8,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "user")
-@Entity(name = "User")
+@Table(name = "usuario")
+@Entity(name = "Usuario")
 @Getter
 @Setter
 public class User {
@@ -21,7 +21,8 @@ public class User {
     private String senha;
     private String telefone;
     private String documentoIdentidade;
-    private LocalDateTime dataNascimento;
+    private String dataNascimento;
+    private LocalDateTime dataCadastro;
     private String endereco;
     private boolean ativo;
 }
