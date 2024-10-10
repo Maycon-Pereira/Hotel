@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.project.hotel.domain.quarto.DadosAtualizacaoQuarto;
 import com.project.hotel.domain.quarto.DadosCriarQuarto;
@@ -30,10 +31,14 @@ public class QuartoController {
 
 		@PostMapping
 		@Transactional
-		public ResponseEntity<DadosDetalhamentoQuarto> criarQuarto(@RequestBody @Valid DadosCriarQuarto dados) throws Exception {
+		public ResponseEntity<DadosDetalhamentoQuarto> criarQuarto(@RequestBody @Valid DadosCriarQuarto dados,
+				UriComponentsBuilder uriBuilder) throws Exception {
 
 			DadosDetalhamentoQuarto response = quartoService.criarQuarto(dados);
-			return ResponseEntity.ok(response);
+
+			var uri = uriBuilder.path("/produtos/{id}").buildAndExpand(response.id()).toUri();
+
+			return ResponseEntity.created(uri).body(response);
 		}
 		
 		@GetMapping("/{id}")

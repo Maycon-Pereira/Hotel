@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record DadosCriarQuarto(
 		
 		 @NotBlank
-		 String id,
-		 @NotBlank
 	     String numero,
 	     @NotBlank
 	     String tipo,

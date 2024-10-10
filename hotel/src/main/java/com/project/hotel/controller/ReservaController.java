@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.project.hotel.domain.reserva.DadosAtualizacaoReserva;
 import com.project.hotel.domain.reserva.DadosCriarReserva;
@@ -30,10 +31,14 @@ public class ReservaController {
 
 		@PostMapping
 		@Transactional
-		public ResponseEntity<DadosDetalhamentoReserva> criarQuarto(@RequestBody @Valid DadosCriarReserva dados) throws Exception {
+		public ResponseEntity<DadosDetalhamentoReserva> criarReserva(@RequestBody @Valid DadosCriarReserva dados,
+				UriComponentsBuilder uriBuilder) throws Exception {
 
 			DadosDetalhamentoReserva response = reservaService.criarReserva(dados);
-			return ResponseEntity.ok(response);
+
+			var uri = uriBuilder.path("/produtos/{id}").buildAndExpand(response.id()).toUri();
+
+			return ResponseEntity.created(uri).body(response);
 		}
 		
 		@GetMapping("/{id}")
@@ -65,7 +70,4 @@ public class ReservaController {
 			return ResponseEntity.noContent().build();
 		}
 
-		
-		
-		
 }

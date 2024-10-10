@@ -3,11 +3,10 @@ package com.project.hotel.domain.reserva;
 import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record DadosCriarReserva(
 		
-		@NotBlank
-		String id,
 		@NotBlank
 		String usuarioId,
 		@NotBlank
@@ -17,11 +16,11 @@ public record DadosCriarReserva(
 	    LocalDateTime dataReserva,
 	    @NotBlank
 	    String metodoPagamento,
-	    @NotBlank
+	    @NotNull
 	    double valorReserva,
-	    @NotBlank
+	    @NotNull
 	    boolean disponivel,
-	    @NotBlank
+	    @NotNull
 	    int capacidade
 	    ) {
 

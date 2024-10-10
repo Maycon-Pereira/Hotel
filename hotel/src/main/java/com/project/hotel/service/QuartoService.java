@@ -30,7 +30,7 @@ public class QuartoService {
         quarto.setTipo(dados.tipo());
         quarto.setCapacidade(dados.capacidade());
         quarto.setPrecoPorNoite(dados.precoPorNoite());
-        quarto.setDisponivel(dados.disponivel());
+        quarto.setDisponivel(true);
         
         Quarto saved = quartoRepository.save(quarto);
         
