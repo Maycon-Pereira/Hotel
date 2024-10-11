@@ -98,7 +98,6 @@ public class ReservaService {
 		reserva.setDataCheckOut(dados.dataCheckOut());
 		reserva.setMetodoPagamento(dados.metodoPagamento());
 		reserva.setValorReserva(dados.valorReserva());
-		reserva.setDisponivel(dados.disponivel());
 		reserva.setCapacidade(dados.capacidade());
 
 		Reserva saved = reservaRepository.save(reserva);
@@ -106,12 +105,22 @@ public class ReservaService {
 		return new DadosDetalhamentoReserva(saved);
 	}
 
-	public void excluirReserva(String id) throws Exception {
+	public DadosDetalhamentoReserva excluirReserva(String id) throws Exception {
 		Optional<Reserva> procurado = reservaRepository.findById(id);
 		if (!procurado.isPresent()) {
 			throw new AccountNotFoundException("Id não encontrado na base");
 		}
+		
+		LocalDateTime agora = LocalDateTime.now();
+	    Reserva reserva = procurado.get();
 
-		reservaRepository.deleteById(id);
+	    if (reserva.getDataCheckIn().isBefore(agora.plusDays(7))) {
+	        throw new AccountNotFoundException("Não é possível cancelar a reserva, pois está muito em cima da hora!");
+	    }
+	    
+	    reserva.setDisponivel(false);  
+	    Reserva saved = reservaRepository.save(reserva);
+		
+        return new DadosDetalhamentoReserva(saved);
 	}
 }
